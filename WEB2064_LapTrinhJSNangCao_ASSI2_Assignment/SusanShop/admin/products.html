@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Susan Admin - Sản phẩm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/base.css"/>
+  <link rel="stylesheet" href="../styles/phone-theme.css"/>
+  <link rel="stylesheet" href="admin.css"/>
+  <script type="module">
+    import { requireAdmin } from '../js/auth.js';
+    window.addEventListener('DOMContentLoaded', requireAdmin);
+  </script>
+</head>
+<body class="admin-body">
+
+<nav class="navbar navbar-expand-lg navbar-dark admin-navbar sticky-top py-3">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="index.html">Susan Admin</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="adminNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Bảng điều khiển</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Danh mục</a></li>
+        <li class="nav-item"><a class="nav-link active" href="products.html">Sản phẩm</a></li>
+        <li class="nav-item"><a class="nav-link" href="orders.html">Đơn hàng</a></li>
+        <li class="nav-item"><a class="nav-link" href="users.html">Người dùng</a></li>
+        <li class="nav-item"><a class="nav-link" href="stats.html">Báo cáo</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+        <a class="btn btn-sm btn-outline-light" href="../index.html">Xem website</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="container-xl admin-shell">
+  <header class="admin-hero">
+    <span class="minimal-badge">Kho hàng</span>
+    <h1 class="display-6 fw-semibold mt-3 mb-2">Danh sách sản phẩm</h1>
+    <p>Thêm thiết bị mới, cập nhật thông số và đồng bộ hình ảnh trên toàn bộ cửa hàng.</p>
+  </header>
+
+  <section class="admin-card">
+    <div class="admin-toolbar">
+      <div>
+        <h4 class="fw-semibold mb-1">Quản lý sản phẩm</h4>
+        <p class="text-muted mb-0">Theo dõi tồn kho, danh mục và mô tả trong một danh sách.</p>
+      </div>
+      <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#prdModal">Thêm sản phẩm</button>
+    </div>
+    <div class="table-responsive admin-table">
+      <div id="prdTable"></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal fade" id="prdModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content admin-modal">
+      <form id="prdForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Thông tin sản phẩm</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="prdId"/>
+          <label class="form-label">Tên sản phẩm</label>
+          <input id="prdName" class="form-control" required/>
+          <label class="form-label mt-3">Mã danh mục</label>
+          <input id="cateId" type="number" class="form-control" required/>
+          <label class="form-label mt-3">Mô tả</label>
+          <textarea id="detail" class="form-control" rows="3"></textarea>
+          <label class="form-label mt-3">Đường dẫn ảnh</label>
+          <input id="image" class="form-control" placeholder="https://..."/>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light" data-bs-dismiss="modal">Huỷ</button>
+          <button class="btn btn-dark">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+  import { ProductAPI } from '../js/api/products.js';
+  import { $ } from '../js/utils.js';
+
+  async function load(){
+    const rows = await ProductAPI.list('_sort=id&_order=desc');
+    const wrap = document.getElementById('prdTable');
+    if(!rows.length){
+      wrap.innerHTML = '<div class="admin-empty">Chưa có sản phẩm nào. Thêm sản phẩm đầu tiên để bắt đầu kinh doanh.</div>';
+      return;
+    }
+    wrap.innerHTML = `
+      <table class="table align-middle mb-0">
+        <thead><tr><th>ID</th><th>Tên</th><th>Danh mục</th><th>Hình ảnh</th><th class="text-end">Thao tác</th></tr></thead>
+        <tbody>
+          ${rows.map(r=>`<tr>
+            <td>${r.id}</td>
+            <td>${r.name}</td>
+            <td>${r.cate_id}</td>
+            <td><img src="${r.image || ''}" style="height:42px" onerror="this.src='https://placehold.co/120x60?text=No+image'"/></td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-secondary" data-edit="${r.id}">Sửa</button>
+              <button class="btn btn-sm btn-outline-danger" data-del="${r.id}">Xoá</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  }
+  await load();
+
+  document.addEventListener('click', async (e)=>{
+    const id = e.target.dataset.edit;
+    if(id){
+      const r = await ProductAPI.get(id);
+      $('#prdId').value = r.id;
+      $('#prdName').value = r.name;
+      $('#cateId').value = r.cate_id;
+      $('#detail').value = r.detail || '';
+      $('#image').value = r.image || '';
+      new bootstrap.Modal(document.getElementById('prdModal')).show();
+    }
+    const delId = e.target.dataset.del;
+    if(delId && confirm('Bạn có chắc chắn muốn xoá sản phẩm này?')){
+      await ProductAPI.remove(delId);
+      await load();
+    }
+  });
+
+  document.getElementById('prdForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const id = $('#prdId').value;
+    const payload = {
+      name: $('#prdName').value.trim(),
+      cate_id: Number($('#cateId').value),
+      detail: $('#detail').value,
+      image: $('#image').value
+    };
+    if(id){
+      await ProductAPI.update(id, payload);
+    }else{
+      await ProductAPI.create(payload);
+    }
+    bootstrap.Modal.getInstance(document.getElementById('prdModal')).hide();
+    await load();
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

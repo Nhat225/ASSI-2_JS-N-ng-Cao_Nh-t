@@ -1,0 +1,177 @@
+{
+  "categories": [
+    {
+      "name": "iPhone",
+      "parent_id": null,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Laptop",
+      "parent_id": null
+    },
+    {
+      "id": "3",
+      "name": "Phụ kiện",
+      "parent_id": null
+    },
+    {
+      "name": "Xiaomi",
+      "parent_id": null,
+      "id": "hony6ar"
+    }
+  ],
+  "products": [
+    {
+      "name": "iPhone 15 Pro",
+      "cate_id": 1,
+      "detail": "Hàng chính hãng VN/A, bảo hành 12T",
+      "image": "https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/iphone-15-mau-den-4.jpg",
+      "id": "1"
+    },
+    {
+      "name": "MacBook Air M2",
+      "cate_id": 2,
+      "detail": "Chip Apple M2, 8GB RAM, 256GB",
+      "image": "https://vatvostudio.vn/wp-content/uploads/2023/10/Moi-tai-bo-hinh-nen-cua-MacBook-Pro-mau-Space-Black-va-iMac-M3.jpg",
+      "id": "2"
+    },
+    {
+      "name": "Tai nghe JBL",
+      "cate_id": 3,
+      "detail": "Âm bass mạnh mẽ, pin 30h",
+      "image": "https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/tai-nghe-bluetooth-jbl-wave-beam-4.jpg?v=1700018045580",
+      "id": "3"
+    },
+    {
+      "name": "iPhone 14 Pro Max",
+      "cate_id": 4,
+      "detail": "",
+      "image": "https://th.bing.com/th/id/R.20383dc5a6400dc14f6274a6ef8bc1f9?rik=pokanE1AmyTZeQ&riu=http%3a%2f%2fwww.ismartbolivia.com%2fwp-content%2fuploads%2f2022%2f09%2fiphone-14-pro-finish-select-202209-6-7inch-spaceblack-800x450.jpeg&ehk=qcwfCkw1ZuY82Wt9M%2bI86gFZi1GlUYpSuZpLThFQ6Ng%3d&risl=&pid=ImgRaw&r=0",
+      "id": "XqAxVok"
+    }
+  ],
+  "product_variants": [
+    {
+      "id": "1",
+      "product_id": 1,
+      "variant_name": "128GB",
+      "price": 28990000,
+      "quantity": 10,
+      "image": ""
+    },
+    {
+      "id": "2",
+      "product_id": 1,
+      "variant_name": "256GB",
+      "price": 31990000,
+      "quantity": 8,
+      "image": ""
+    },
+    {
+      "id": "3",
+      "product_id": 2,
+      "variant_name": "8/256",
+      "price": 24990000,
+      "quantity": 5,
+      "image": ""
+    },
+    {
+      "id": "4",
+      "product_id": 3,
+      "variant_name": "Màu đen",
+      "price": 1490000,
+      "quantity": 20,
+      "image": ""
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@susan.vn",
+      "password": "123456",
+      "role": "admin",
+      "phone": "0123456789",
+      "address": "HCM"
+    },
+    {
+      "id": "2",
+      "name": "User",
+      "email": "user@susan.vn",
+      "password": "123456",
+      "role": "user",
+      "phone": "0987654321",
+      "address": "HN"
+    },
+    {
+      "id": "ce47",
+      "name": "nhat",
+      "email": "adminn@susan.vn",
+      "password": "1234",
+      "phone": "12345678",
+      "address": "số 90 tổ 17",
+      "role": "user"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1072",
+      "user_id": 2,
+      "created_date": "2025-10-18T07:37:05.438Z",
+      "status": "pending",
+      "total": 28990000
+    },
+    {
+      "user_id": 2,
+      "created_date": "2025-10-20T06:32:26.134Z",
+      "status": "pending",
+      "total": 1490000,
+      "id": "AeuYXUR"
+    },
+    {
+      "user_id": 2,
+      "created_date": "2025-10-20T06:33:02.428Z",
+      "status": "pending",
+      "total": 1490000,
+      "id": "dzLanDO"
+    },
+    {
+      "user_id": 2,
+      "created_date": "2025-10-20T06:33:54.520Z",
+      "status": "pending",
+      "total": 28990000,
+      "id": "uOSt2NV"
+    }
+  ],
+  "order_details": [
+    {
+      "id": "c099",
+      "order_id": "1072",
+      "product_id": 1,
+      "quantity": 1,
+      "unit_price": 28990000
+    },
+    {
+      "order_id": "AeuYXUR",
+      "product_id": 3,
+      "quantity": 1,
+      "unit_price": 1490000,
+      "id": "GxwepKa"
+    },
+    {
+      "order_id": "dzLanDO",
+      "product_id": 3,
+      "quantity": 1,
+      "unit_price": 1490000,
+      "id": "Ng9fN7M"
+    },
+    {
+      "order_id": "uOSt2NV",
+      "product_id": 1,
+      "quantity": 1,
+      "unit_price": 28990000,
+      "id": "C-Vqij8"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Susan Shop - Đăng ký</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles/base.css"/>
+  <link rel="stylesheet" href="styles/phone-theme.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { bindRegister } from './js/auth.js';
+    window.addEventListener('DOMContentLoaded', bindRegister);
+  </script>
+</head>
+<body>
+
+<nav class='navbar navbar-expand-lg sticky-top py-3'>
+  <div class='container'>
+    <a class='navbar-brand fw-semibold' href='index.html'>Susan Shop</a>
+    <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#nav' aria-controls='nav' aria-expanded='false' aria-label='Mở điều hướng'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+    <div class='collapse navbar-collapse' id='nav'>
+      <ul class='navbar-nav ms-lg-5 me-auto align-items-lg-center gap-lg-3 mb-3 mb-lg-0'>
+        <li class='nav-item'><a class='nav-link' href='index.html'>Trang chủ</a></li>
+        <li class='nav-item'><a class='nav-link' href='products.html'>Điện thoại</a></li>
+        <li class='nav-item' data-auth='guest'><a class='nav-link' href='login.html'>Đăng nhập</a></li>
+        <li class='nav-item' data-auth='guest'><a class='nav-link active' href='register.html'>Đăng ký</a></li>
+        <li class='nav-item'><a class='nav-link' href='cart.html'>Giỏ hàng</a></li>
+        <li class='nav-item d-none' data-auth='user'>
+          <span class='nav-link disabled text-nowrap' data-user-name>Xin chào</span>
+        </li>
+      </ul>
+      <div class='d-flex align-items-center gap-3'>
+        <a class='btn btn-sm btn-outline-secondary d-none' data-admin-link href='admin/index.html'>Quản trị</a>
+        <a class='btn btn-sm btn-dark' href='login.html' data-auth='guest'>Đăng nhập</a>
+        <button class='btn btn-sm btn-outline-secondary d-none' data-action='logout' data-auth='user'>Đăng xuất</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="container my-5">
+  <div class="page-hero">
+    <span class="minimal-badge">Thành viên mới</span>
+    <h1 class="display-6 fw-semibold mt-3 mb-3"> Tạo tài khoản </h1>
+    <p>Tự động lưu bảo hành, nhận ưu đãi thành viên và đồng bộ thiết bị mới chỉ trong vài giây.</p>
+  </div>
+</header>
+
+<section class="container page-section auth-panel auth-panel-lg">
+  <div class="neon-card">
+    <h4 class="fw-semibold mb-3 text-center text-md-start">Thông tin khách hàng</h4>
+    <form id="registerForm" class="row g-3 auth-form">
+      <div class="col-md-6">
+        <label class="form-label" for="name">Họ tên</label>
+        <input id="name" class="form-control" placeholder="Nguyễn Văn A" required/>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="email">Email</label>
+        <input id="email" type="email" class="form-control" placeholder="example@susanshop.vn" required/>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="password">Mật khẩu</label>
+        <input id="password" type="password" class="form-control" placeholder="Nhập mật khẩu" required/>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="phone">Điện thoại</label>
+        <input id="phone" class="form-control" placeholder="09xx xxx xxx"/>
+      </div>
+      <div class="col-12">
+        <label class="form-label" for="address">Địa chỉ</label>
+        <input id="address" class="form-control" placeholder="Số nhà, đường, quận, thành phố"/>
+      </div>
+      <div class="col-12 pt-2">
+        <button class="btn btn-dark w-100">Đăng ký</button>
+      </div>
+    </form>
+    <p class="text-muted small mt-3 mb-0 text-center text-md-start">
+      Bằng việc tạo tài khoản, bạn đồng ý với <a href="policy.html" class="text-decoration-none">chính sách bảo mật</a> của Susan Shop.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>&copy; 2025 Susan Shop. Sống thông minh, lựa chọn thông minh.</div>
+    <div class="d-flex gap-4 small">
+      <a href="about.html">Về chúng tôi</a>
+      <a href="policy.html">Chính sách bảo mật</a>
+      <a href="contact.html">Liên hệ</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/utils.js"></script>
+</body>
+</html>
+
+

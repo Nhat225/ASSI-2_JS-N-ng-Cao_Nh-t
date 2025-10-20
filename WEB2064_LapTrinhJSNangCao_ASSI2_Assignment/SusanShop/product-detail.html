@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Susan Shop - Chi tiết điện thoại</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles/base.css"/>
+  <link rel="stylesheet" href="styles/phone-theme.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initProductDetail } from './js/main.js';
+    import { bindAddToCart } from './js/cart.js';
+    window.addEventListener('DOMContentLoaded', async () => {
+      await initProductDetail();
+      bindAddToCart();
+    });
+  </script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="index.html">Susan Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Mở điều hướng">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-lg-5 me-auto align-items-lg-center gap-lg-3 mb-3 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+        <li class="nav-item"><a class="nav-link active" href="products.html">Điện thoại</a></li>
+        <li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Đăng nhập</a></li>
+        <li class="nav-item" data-auth="guest"><a class="nav-link" href="register.html">Đăng ký</a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.html">Giỏ hàng</a></li>
+        <li class="nav-item d-none" data-auth="user">
+          <span class="nav-link disabled text-nowrap" data-user-name>Xin chào</span>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <a class="btn btn-sm btn-outline-secondary d-none" data-admin-link href="admin/index.html">Quản trị</a>
+        <a class="btn btn-sm btn-dark" href="cart.html">Xem giỏ hàng</a>
+        <button class="btn btn-sm btn-outline-secondary d-none" data-action="logout" data-auth="user">Đăng xuất</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="container detail-hero__inner">
+    <span class="detail-hero__badge">Thông tin chi tiết</span>
+    <h1 class="detail-hero__title" id="pName">Tên sản phẩm</h1>
+    <p class="detail-hero__lead" id="pDetail">Nội dung mô tả sản phẩm sẽ được cập nhật ngay sau khi tải dữ liệu.</p>
+  </div>
+</header>
+
+<section class="container product-spotlight">
+  <div class="product-spotlight__card">
+    <div class="product-spotlight__media">
+      <div class="product-spotlight__frame">
+        <img id="pImage" src="https://placehold.co/640x640?text=Product" alt="Điện thoại Susan Shop"/>
+      </div>
+      <div class="product-spotlight__ribbon">
+        <span>Đổi trả 30 ngày</span>
+        <span>Giao nhanh 2 giờ</span>
+        <span>Trả góp 0%</span>
+      </div>
+    </div>
+    <div class="product-spotlight__info">
+      <div class="product-highlight">
+        <h2 class="product-highlight__title" data-product-name>Flagship 5G mới</h2>
+        <p class="product-highlight__subtitle" data-product-detail>Thông tin chi tiết về cấu hình, camera và hiệu năng sẽ hiển thị ở đây.</p>
+      </div>
+      <div class="product-pillset">
+        <span class="product-pill">Bảo hành 18 tháng</span>
+        <span class="product-pill">Hỗ trợ trực tuyến 24/7</span>
+        <span class="product-pill">Quà tặng độc quyền</span>
+      </div>
+      <div class="product-form row g-3 align-items-end">
+        <div class="col-lg-6">
+          <label class="form-label" for="variant">Phiên bản</label>
+          <select id="variant" class="form-select"></select>
+        </div>
+        <div class="col-lg-3">
+          <label class="form-label" for="qty">Số lượng</label>
+          <input id="qty" type="number" class="form-control" value="1" min="1"/>
+        </div>
+        <div class="col-lg-3 d-flex">
+          <button id="btnAddToCart" class="btn btn-gradient w-100">Thêm vào giỏ</button>
+        </div>
+      </div>
+      <div class="product-benefits">
+        <h6>Ưu đãi dành riêng tại Susan Shop</h6>
+        <ul>
+          <li>Tặng gói bảo hành mở rộng 12 tháng và hỗ trợ kỹ thuật tận nơi.</li>
+          <li>Miễn phí phụ kiện sạc nhanh và dán màn hình chính hãng.</li>
+          <li>Nhận ưu đãi thu cũ đổi mới, trả góp linh hoạt chỉ 0% lãi suất.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container product-specs">
+  <div class="section-heading mb-4">
+    <div>
+      <h4 class="fw-semibold mb-1">Điểm nhấn nổi bật</h4>
+      <p class="small">Những công nghệ mới nhất giúp nâng tầm trải nghiệm di động</p>
+    </div>
+  </div>
+  <div class="product-specs__grid">
+    <article class="product-specs__item">
+      <h5>Màn hình ProMotion</h5>
+      <p class="mb-0">Tấm nền OLED 6.7" 120Hz, độ sáng đỉnh 2.000 nits cho hiển thị rực rỡ.</p>
+    </article>
+    <article class="product-specs__item">
+      <h5>Hiệu năng vượt trội</h5>
+      <p class="mb-0">Chipset thế hệ mới hỗ trợ AI on-device, xử lý đa nhiệm và gaming mượt mà.</p>
+    </article>
+    <article class="product-specs__item">
+      <h5>Camera AI 48MP</h5>
+      <p class="mb-0">Tối ưu chụp đêm, quay phim 4K Dolby Vision, chân dung sắc nét.</p>
+    </article>
+    <article class="product-specs__item">
+      <h5>Pin thông minh</h5>
+      <p class="mb-0">Sạc nhanh 65W, sạc không dây MagSafe và quản lý pin thông minh.</p>
+    </article>
+  </div>
+</section>
+
+<section class="container product-services">
+  <div class="section-heading mb-4">
+    <div>
+      <h4 class="fw-semibold mb-1">Dịch vụ đi kèm</h4>
+      <p class="small">Tận hưởng hệ sinh thái chăm sóc khách hàng cao cấp</p>
+    </div>
+  </div>
+  <div class="product-services__grid">
+    <div class="product-service">
+      <h5>Chuyển dữ liệu an toàn</h5>
+      <p class="mb-0">Kỹ thuật viên hỗ trợ chuyển danh bạ, hình ảnh và ứng dụng chỉ trong vài phút.</p>
+    </div>
+    <div class="product-service">
+      <h5>Thiết lập cá nhân hóa</h5>
+      <p class="mb-0">Cài đặt bảo mật, gói mạng, tối ưu AI theo nhu cầu sử dụng của bạn.</p>
+    </div>
+    <div class="product-service">
+      <h5>Hỗ trợ 24/7</h5>
+      <p class="mb-0">Tư vấn online, hỗ trợ từ xa và kiểm tra sức khỏe thiết bị định kỳ.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>&copy; 2025 Susan Shop. Sống thông minh, lựa chọn thông minh.</div>
+    <div class="d-flex gap-4 small">
+      <a href="about.html">Về chúng tôi</a>
+      <a href="policy.html">Chính sách bảo mật</a>
+      <a href="contact.html">Liên hệ</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/utils.js"></script>
+</body>
+</html>

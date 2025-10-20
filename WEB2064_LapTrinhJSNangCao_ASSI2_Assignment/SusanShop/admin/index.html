@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Susan Admin - Bảng điều khiển</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/base.css"/>
+  <link rel="stylesheet" href="../styles/phone-theme.css"/>
+  <link rel="stylesheet" href="admin.css"/>
+  <script type="module">
+    import { requireAdmin } from '../js/auth.js';
+    window.addEventListener('DOMContentLoaded', requireAdmin);
+  </script>
+</head>
+<body class="admin-body">
+
+<nav class="navbar navbar-expand-lg navbar-dark admin-navbar sticky-top py-3">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="index.html">Susan Admin</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="adminNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Bảng điều khiển</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Danh mục</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Sản phẩm</a></li>
+        <li class="nav-item"><a class="nav-link" href="orders.html">Đơn hàng</a></li>
+        <li class="nav-item"><a class="nav-link" href="users.html">Người dùng</a></li>
+        <li class="nav-item"><a class="nav-link" href="stats.html">Báo cáo</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+        <span class="admin-tag">Hệ thống</span>
+        <a class="btn btn-sm btn-outline-light" href="../index.html">Xem website</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="container-xl admin-shell">
+  <header class="admin-hero">
+    <span class="minimal-badge">Trung tâm điều hành</span>
+    <h1 class="display-6 fw-semibold mt-3 mb-2">Chào mừng trở lại, quản trị viên</h1>
+    <p>Theo dõi hiệu suất cửa hàng, quản lý tồn kho và đảm bảo trải nghiệm khách hàng mượt mà ngay tại một nơi.</p>
+  </header>
+
+  <section class="metric-grid" id="dashboardMetrics">
+    <div class="metric-card">
+      <span>Sản phẩm đang bán</span>
+      <strong id="metricProducts">0</strong>
+    </div>
+    <div class="metric-card">
+      <span>Đơn hàng trong tháng</span>
+      <strong id="metricOrders">0</strong>
+    </div>
+    <div class="metric-card">
+      <span>Tổng doanh thu (VND)</span>
+      <strong id="metricRevenue">0</strong>
+    </div>
+    <div class="metric-card">
+      <span>Người dùng đăng ký</span>
+      <strong id="metricUsers">0</strong>
+    </div>
+  </section>
+
+  <section class="admin-card mt-5">
+    <div class="admin-toolbar">
+      <div>
+        <h4 class="fw-semibold">Thao tác nhanh</h4>
+        <p class="mb-0 text-muted">Truy cập các chức năng quản trị thường xuyên sử dụng.</p>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-3">
+        <a class="admin-card compact d-block text-decoration-none h-100" href="products.html">
+          <h6>Quản lý sản phẩm</h6>
+          <p class="mb-0 text-muted">Cập nhật giá, tồn kho và hình ảnh cho từng thiết bị.</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <a class="admin-card compact d-block text-decoration-none h-100" href="categories.html">
+          <h6>Điều chỉnh danh mục</h6>
+          <p class="mb-0 text-muted">Sắp xếp cấu trúc hiển thị để khách hàng tìm kiếm nhanh chóng.</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <a class="admin-card compact d-block text-decoration-none h-100" href="orders.html">
+          <h6>Kiểm tra đơn hàng</h6>
+          <p class="mb-0 text-muted">Xác thực thanh toán và theo dõi trạng thái giao nhận.</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <a class="admin-card compact d-block text-decoration-none h-100" href="users.html">
+          <h6>Hồ sơ khách hàng</h6>
+          <p class="mb-0 text-muted">Cập nhật quyền hạn, thông tin liên hệ và trạng thái tài khoản.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module">
+  import { ProductAPI } from '../js/api/products.js';
+  import { OrderAPI } from '../js/api/orders.js';
+  import { UserAPI } from '../js/api/users.js';
+
+  async function hydrateDashboard() {
+    const [products, orders, users] = await Promise.all([
+      ProductAPI.list(),
+      OrderAPI.list(),
+      UserAPI.list()
+    ]);
+
+    document.getElementById('metricProducts').textContent = products.length.toLocaleString('vi-VN');
+    document.getElementById('metricOrders').textContent = orders.length.toLocaleString('vi-VN');
+    const revenue = orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+    document.getElementById('metricRevenue').textContent = revenue.toLocaleString('vi-VN');
+    document.getElementById('metricUsers').textContent = users.length.toLocaleString('vi-VN');
+  }
+
+  hydrateDashboard();
+</script>
+</body>
+</html>
