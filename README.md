@@ -14,7 +14,7 @@ Bao gồm các tính năng: xem sản phẩm, giỏ hàng, đăng nhập/đăng 
 - Xem danh mục, sản phẩm, chi tiết sản phẩm
 - Thêm vào giỏ hàng, tính tổng tiền, thanh toán
 - Đăng nhập/đăng ký tài khoản
-- Admin: Quản lý sản phẩm, danh mục, đơn hàng
+- Admin: Quản lý sản phẩm, danh mục, đơn hàng, thêm và xóa sản phẩm, quản lý đơn hàng.
 
 ## Cách chạy dự án
 ```bash
